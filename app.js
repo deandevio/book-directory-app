@@ -4,6 +4,7 @@ const session = require("express-session");
 const DB_CONNECT = require("./config/db");
 const routes = require("./routes/bookDirectoryRoutes");
 const ejs = require("ejs");
+const { urlencoded } = require("express");
 const app = express();
 // Load env config file
 dotenv.config({ path: "config/config.env" });
@@ -16,6 +17,8 @@ DB_CONNECT();
 
 // Middleware
 app.use(express.json());
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 // Router mount
 app.use("/api/v1", routes);
