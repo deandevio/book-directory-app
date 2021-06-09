@@ -12,7 +12,7 @@ form.addEventListener("submit", async (e) => {
     body: JSON.stringify({ author, title, date }),
     headers: { "Content-Type": "application/json" },
   })
-    .then(async (result) => await result.json())
+    .then((result) => result.json())
     .then((newResult) => console.log(newResult))
     .catch((err) => console.log(err));
 });
