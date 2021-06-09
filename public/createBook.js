@@ -7,11 +7,12 @@ form.addEventListener("submit", async (e) => {
   const title = form.title.value;
   const date = form.date.value;
 
-  const result = await fetch("/api/v1/createbook", {
+  await fetch("/api/v1/createbook", {
     method: "POST",
     body: JSON.stringify({ author, title, date }),
     headers: { "Content-Type": "application/json" },
-  });
-  const data = result.json;
-  console.log(data);
+  })
+    .then(async (result) => await result.json())
+    .then((newResult) => console.log(newResult))
+    .catch((err) => console.log(err));
 });
