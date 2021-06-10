@@ -27,6 +27,22 @@ exports.getBook = async (req, res) => {
     .catch((err) => console.log(err));
 };
 
+exports.getBooks = async (req, res) => {
+  try {
+    const { ...books } = await Book.find();
+    const newBooks = JSON.stringify({ books });
+    const result = Object.entries(newBooks).reduce((acc, [key, value]) => {
+      const { _id, __v, ...rest } = value;
+      acc[key] = rest;
+      return acc;
+    }, {});
+
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 exports.deleteAllBooks = async (req, res) => {
   await Book.deleteMany({})
     .then((result) => res.status(200).json({ success: true, result }))
