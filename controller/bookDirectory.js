@@ -1,7 +1,8 @@
+const { isValidObjectId } = require("mongoose");
 const Book = require("../model/Book");
 
-exports.getIndex = (req, res) => {
-  res.status(200).render("index");
+exports.getIndex = async (req, res) => {
+  await Book.find().then((result) => res.render("index", { books: result }));
 };
 
 exports.createBook = (req, res) => {
@@ -25,22 +26,6 @@ exports.getBook = async (req, res) => {
   await Book.findById(id)
     .then((book) => res.status(200).json({ book }))
     .catch((err) => console.log(err));
-};
-
-exports.getBooks = async (req, res) => {
-  try {
-    const { ...books } = await Book.find();
-    const newBooks = JSON.stringify({ books });
-    const result = Object.entries(newBooks).reduce((acc, [key, value]) => {
-      const { _id, __v, ...rest } = value;
-      acc[key] = rest;
-      return acc;
-    }, {});
-
-    console.log(result);
-  } catch (err) {
-    console.log(err);
-  }
 };
 
 exports.deleteAllBooks = async (req, res) => {

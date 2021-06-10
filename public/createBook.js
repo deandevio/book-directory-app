@@ -15,4 +15,6 @@ form.addEventListener("submit", async (e) => {
     .then((result) => result.json())
     .then((newResult) => console.log(newResult))
     .catch((err) => console.log(err));
+
+  location.assign("/api" + "/v1");
 });

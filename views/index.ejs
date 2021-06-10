@@ -6,9 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index</title>
     <link rel="stylesheet" href="/index.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <h1>Hi, this is the index</h1>
+
+
+    <div class="card wrapper" style="width: 18rem;">
+      <% if (books.length > 0) { %> <% books.forEach(book => { %>
+      <div class="card-body">
+        <h3 class="card-title"><%= book.author %></h5>
+        <p class="card-text"><%= book.title %></p>
+        <p class="card-text"><%= book.date %></p>
+      </div>
+      <% }) %> <% } else { %>
+        <p>There are no blogs to display...</p>
+        <% } %>
+    </div>
+
+
     <script src="/index.js"></script>
   </body>
 </html>
