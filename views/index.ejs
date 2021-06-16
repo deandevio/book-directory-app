@@ -14,22 +14,22 @@
     />
   </head>
   <body>  
-    <div class="container">
+    <div class="books">
+    <div class="container-lg">
       <div class="row main-row">
-        <% console.log(books) %>
-        <% console.log(books) %>
-        <% console.log(books) %>
         <% if (books.length > 0) { %> <% books.forEach(book => { %>
-        <div class="col-lg-4 col-md-12 col-sm-12">
+        <div class="col-lg-4 col-md-12 col-sm-12 row align-items-start">
           <h4 class="col-lg-8 col-md-12 col-sm-12"><%= book.author %></h3>
           <p class="col-lg-8"><%= book.title %></p>
-          <p class="col-lg-8"><%= book.newDate %></p>
+          <p class="col-lg-8"><%= book.date %></p>
         </div>
         <% }) %> <% } else { %>
         <p>There are no blogs to display...</p>
         <% } %>
       </div>
     </div>
+  </div>
+
 
     <script src="/index.js"></script>
     <script

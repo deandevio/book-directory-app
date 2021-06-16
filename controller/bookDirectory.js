@@ -2,18 +2,19 @@ const Book = require("../model/Book");
 const { format } = require("date-fns");
 
 exports.getIndex = async (req, res) => {
-  try {
-    const books = await Book.find();
-    const result = Object.entries(books).reduce((acc, [key, value]) => {
-      const { author, title, date } = value;
-      const newDate = format(date, "MM/dd/yyyy");
-      acc[key] = { author, title, newDate };
-      return acc;
-    }, {});
-    res.render("index", { books: result });
-  } catch (err) {
-    console.log(err);
-  }
+  await Book.find().then((books) => res.render("index", { books }));
+  // try {
+  //   const books = await Book.find();
+  //   const result = Object.entries(books).reduce((acc, [key, value]) => {
+  //     const { author, title, date } = value;
+  //     const newDate = format(date, "MM/dd/yyyy");
+  //     acc[key] = { author, title, newDate };
+  //     return acc;
+  //   }, {});
+  //   res.render("index", { books: result });
+  // } catch (err) {
+  //   console.log(err);
+  // }
 };
 
 exports.getBooks = async (req, res) => {
