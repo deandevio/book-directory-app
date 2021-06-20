@@ -3,18 +3,6 @@ const { format } = require("date-fns");
 
 exports.getIndex = async (req, res) => {
   await Book.find().then((books) => res.render("index", { books }));
-  // try {
-  //   const books = await Book.find();
-  //   const result = Object.entries(books).reduce((acc, [key, value]) => {
-  //     const { author, title, date } = value;
-  //     const newDate = format(date, "MM/dd/yyyy");
-  //     acc[key] = { author, title, newDate };
-  //     return acc;
-  //   }, {});
-  //   res.render("index", { books: result });
-  // } catch (err) {
-  //   console.log(err);
-  // }
 };
 
 exports.getBooks = async (req, res) => {
@@ -47,14 +35,6 @@ exports.getBook = async (req, res) => {
     console.log(err);
   }
 };
-
-//   await Book.findById(id)
-//     .then((book) => {
-//       newDate = format(book.date, "MM/dd/yyyy");
-//       res.status(200).json({book, })
-//     })
-//     .catch((err) => console.log(err));
-// };
 
 exports.deleteAllBooks = async (req, res) => {
   await Book.deleteMany({})
